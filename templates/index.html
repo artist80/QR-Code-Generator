@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>QR Code Generator</h1>
+            <h3>Support Palestine</h3>
+            <form action="/generate" method="POST">
+                <label for="url">Enter URL:</label>
+                <input type="url" id="url" name="url" required>
+                <button type="submit">Generate QR Code</button>
+            </form>
+            {% if img_data %}
+            <div class="qr-code">
+                <h2>Your QR Code:</h2>
+                <img src="{{ img_data }}" alt="QR Code">
+                <a href="{{ img_data }}" download="qr_code.png" class="download-button">Download QR Code</a>
+            </div>
+            {% endif %}
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Compcit.com. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
